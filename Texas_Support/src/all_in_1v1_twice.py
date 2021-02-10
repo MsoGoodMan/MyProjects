@@ -59,7 +59,7 @@ def start(cards_on_table, p1_cards, p2_cards):
     return p1_win / 100000, p2_win / 100000, draw_game_times / 100000
 
 if __name__ == "__main__":
-    cards_on_table = "ht_6,cl_12,dm_9"
-    p1_cards = "dm_6,sp_6"
-    p2_cards = "ht_13,dm_13"
+    cards_on_table = "sp_5,cl_13,ht_6,sp_8"
+    p1_cards = "ht_5,dm_5"
+    p2_cards = "sp_10,ht_13"
     start(cards_on_table, p1_cards, p2_cards)

@@ -4,8 +4,7 @@ import all_in_1v1_twice
 import all_in_before_river
 import _tools
 
-def load_history_record():
-    path = "../data/output/screwed_score1218.csv"
+def load_history_record(path):
     f = open(path, "r")
     lines = f.readlines()
     history_score = {}
@@ -26,9 +25,9 @@ def write_down_process_v2(cards_on_table,leader_name, chaser_name, leader_win_ra
     public_cards = _tools.translate_cards(cards_on_table)
     content += "公牌： " + public_cards + "\n"
     leader_cards = _tools.translate_cards(leader_card)
-    content += "领先： " + leader_name + "->" + leader_cards + " 领先方胜率：" + str(leader_win_rate) + "\n"
+    content += "领先： " + leader_name + "->" + leader_cards + " 领先方胜率(两轮)：" + str(leader_win_rate) + "\n"
     chaser_cards = _tools.translate_cards(chaser_card)
-    content += "追牌： " + chaser_name + "->" + chaser_cards + " 追牌方胜率：" + str(chaser_win_rate) + "\n"
+    content += "追牌： " + chaser_name + "->" + chaser_cards + " 追牌方胜率（两轮）：" + str(chaser_win_rate) + "\n"
     content += "模式：两轮   平分概率： " + str(draw_game_rate) + "\n"
     if "leader" in winner_info:
         content += "结果： " + leader_name + " 两次领先获胜\n"
@@ -114,6 +113,7 @@ def once_processor(leader_info, chaser_info, cards_on_table, winner_info, histor
     return new_history_score
 
 def start_calculation(history_score, game_date, input_path):
+    new_history_score = "No any game played at the pointed date."
     f = open(input_path, "r")
     lines = f.readlines()[1:]
     for line in lines:
@@ -123,8 +123,8 @@ def start_calculation(history_score, game_date, input_path):
         public_info = parts[2]
         winner_info = parts[3]
         record_date = parts[4]
-        # if record_date != game_date:
-        #     continue
+        if record_date != game_date:
+            continue
         if public_info == "null":
             cards_on_table = ""
         else:
@@ -151,8 +151,9 @@ def output_screwed_score(new_history_score, game_date):
     return
 
 if __name__ == "__main__":
-    history_score = load_history_record()
+    history_path = "../data/output/screwed_score20210206.csv"
+    history_score = load_history_record(history_path)
     input_path = "../data/input/input.csv"
-    game_date = "20210116"
+    game_date = "20210208"
     new_history_score = start_calculation(history_score, game_date, input_path)
     output_screwed_score(new_history_score, game_date)

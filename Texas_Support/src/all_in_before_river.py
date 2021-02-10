@@ -42,8 +42,8 @@ def start(cards_on_table, player_cards):
     return win_times_list, draw_game_times
 
 if __name__ == "__main__":
-    cards_on_table = ""
-    p0_cards = "dm_7,sp_7"
-    p1_cards = "cl_10,ht_10"
+    cards_on_table = "sp_12,dm_13,cl_8,ht_9"
+    p0_cards = "dm_11,sp_13"
+    p1_cards = "cl_13,ht_7"
     player_cards = [p0_cards, p1_cards]
     start(cards_on_table, player_cards)
